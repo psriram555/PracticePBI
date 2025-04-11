@@ -27,13 +27,22 @@
       "name": "6eee1a614270e7313889",
       "visualContainers": [
         {
-          "config": "{\"name\":\"b01a1e12067d43e5547a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":291.0258598814275,\"y\":79.37068905857114,\"z\":0,\"width\":279.68719001591734,\"height\":279.68719001591734,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Trips.trip_distance)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"Trips\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"trip_distance\"}},\"Function\":0},\"Name\":\"Sum(Trips.trip_distance)\",\"NativeReferenceName\":\"Sum of trip_distance\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"trip_distance\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "config": "{\"name\":\"b01a1e12067d43e5547a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":43.58721966532762,\"y\":135.12038096251564,\"z\":0,\"width\":278.9582058580968,\"height\":281.13756684136314,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Trips.trip_distance)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"Trips\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"trip_distance\"}},\"Function\":0},\"Name\":\"Sum(Trips.trip_distance)\",\"NativeReferenceName\":\"Sum of trip_distance\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"trip_distance\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
           "filters": "[]",
-          "height": 279.69,
-          "width": 279.69,
-          "x": 291.03,
-          "y": 79.37,
+          "height": 281.14,
+          "width": 278.96,
+          "x": 43.59,
+          "y": 135.12,
           "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"c456d4f6b7f01571780c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":414.07858682061243,\"y\":167.81079571151133,\"z\":1,\"width\":865.2063103567533,\"height\":385.74689403814943,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Trips.tpep_pickup_datetime.Variation.Date Hierarchy.Day\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Trips.fare_amount)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"Trips\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Name\":\"Variation\",\"Property\":\"tpep_pickup_datetime\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Day\"},\"Name\":\"Trips.tpep_pickup_datetime.Variation.Date Hierarchy.Day\",\"NativeReferenceName\":\"tpep_pickup_datetime Day\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"fare_amount\"}},\"Function\":0},\"Name\":\"Sum(Trips.fare_amount)\",\"NativeReferenceName\":\"Sum of fare_amount\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Name\":\"Variation\",\"Property\":\"tpep_pickup_datetime\"}},\"Hierarchy\":\"Date Hierarchy\"}},\"Level\":\"Day\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 385.75,
+          "width": 865.21,
+          "x": 414.08,
+          "y": 167.81,
+          "z": 1.00
         }
       ],
       "width": 1280.00
