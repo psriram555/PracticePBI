@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.141.1451.0 (25.03)+5007b75f0f7edbed506e31fcb76584cd6d711788
+
+annotation PBI_QueryOrder = ["SqlServerInstance","SqlServerDatabase","Culture","Customer","Dim_Date","Product","Reseller","Sales","Sales Order","Sales Territory","Currency Rate","Currency","Measure Table","Top_N_Values"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Customer
+ref table Dim_Date
+ref table 'Sales Territory'
+ref table Product
+ref table 'Sales Order'
+ref table Sales
+ref table Reseller
+ref table 'Currency Rate'
+ref table Currency
+ref table ShipDate
+ref table 'Due Date'
+ref table 'Measure Table'
+ref table Top_N_Values
+ref table Top_N_Parameter
+ref table Prod_table_with_Others
+
+ref cultureInfo en-US
+
