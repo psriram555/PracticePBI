@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.62\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "2c5bceb026732b3e5113",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6d901b1806f94407946f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":171.9698262935708,\"y\":102.04802878959147,\"z\":0,\"width\":980.7949433666291,\"height\":472.4445777295901,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"public Album.AlbumId\"},{\"queryRef\":\"public Album.Title\"},{\"queryRef\":\"public Artist.Name\"},{\"queryRef\":\"public Track.TrackId\"},{\"queryRef\":\"public Track.Name\"},{\"queryRef\":\"Sum(public Track.UnitPrice)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"public Album\",\"Type\":0},{\"Name\":\"p1\",\"Entity\":\"public Artist\",\"Type\":0},{\"Name\":\"p2\",\"Entity\":\"public Track\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"AlbumId\"},\"Name\":\"public Album.AlbumId\",\"NativeReferenceName\":\"AlbumId\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Title\"},\"Name\":\"public Album.Title\",\"NativeReferenceName\":\"Title\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p1\"}},\"Property\":\"Name\"},\"Name\":\"public Artist.Name\",\"NativeReferenceName\":\"Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p2\"}},\"Property\":\"TrackId\"},\"Name\":\"public Track.TrackId\",\"NativeReferenceName\":\"TrackId\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p2\"}},\"Property\":\"Name\"},\"Name\":\"public Track.Name\",\"NativeReferenceName\":\"Name1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p2\"}},\"Property\":\"UnitPrice\"}},\"Function\":0},\"Name\":\"Sum(public Track.UnitPrice)\",\"NativeReferenceName\":\"Sum of UnitPrice\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"225.62931094142886D\"}}}},\"selector\":{\"metadata\":\"public Album.Title\"}}]}}}",
+          "filters": "[]",
+          "height": 472.44,
+          "width": 980.79,
+          "x": 171.97,
+          "y": 102.05,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

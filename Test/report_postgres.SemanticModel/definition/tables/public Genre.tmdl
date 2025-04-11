@@ -1,0 +1,36 @@
+table 'public Genre'
+	lineageTag: cd04f55a-08ac-4573-8a46-3177293f628f
+
+	column GenreId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ca37c387-a395-4025-9a13-5d59bebe58c3
+		summarizeBy: none
+		sourceColumn: GenreId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 2145e318-eed8-4a02-ac2a-4de73d4ffdf3
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Genre' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Genre = Source{[Schema="public",Item="Genre"]}[Data]
+				in
+				    public_Genre
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

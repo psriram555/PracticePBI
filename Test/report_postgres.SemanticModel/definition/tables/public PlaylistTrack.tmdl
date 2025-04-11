@@ -1,0 +1,38 @@
+table 'public PlaylistTrack'
+	lineageTag: adb18b4e-03e9-4e7a-8f1c-023f8d7e7616
+
+	column PlaylistId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 78ee1b15-04d2-44c1-8850-01405b12ca3b
+		summarizeBy: none
+		sourceColumn: PlaylistId
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 31fd7e20-9bb6-49f9-afb7-b5d40d093eec
+		summarizeBy: none
+		sourceColumn: TrackId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public PlaylistTrack' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_PlaylistTrack = Source{[Schema="public",Item="PlaylistTrack"]}[Data]
+				in
+				    public_PlaylistTrack
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

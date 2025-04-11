@@ -1,0 +1,137 @@
+table 'public Customer'
+	lineageTag: bb06e8f1-26c1-4f51-abe5-c848f8434f40
+
+	column CustomerId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7e894fde-a8bc-4c20-8a27-be1f6b7481a0
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 863f85d0-5118-4c99-8670-206c09ae81cc
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9b61c68c-e99d-4ea2-835a-8f13da11efb4
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 0eae017d-f581-4065-bbf0-183af55292d1
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 15143445-c01b-4019-9ed4-2de2968a4e38
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: fad53a49-d88a-41c8-9b0f-a386ec09e3f1
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: eb5d55b7-7131-4bcc-8f54-7d7ab7150b4e
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: fb22dc16-ae88-4457-8b1e-871549a48375
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 879290a6-9b1e-476d-8159-1e7197a922bd
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e74804b5-6bf2-4414-86b8-4c3b5c939bfa
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: be55eed8-776d-4363-924d-32a885a6d372
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4197ec8c-b2df-4942-8e8d-8e78d7e5af34
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column SupportRepId
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 27450730-df9c-4ce2-9af2-f8ed6a11f71e
+		summarizeBy: none
+		sourceColumn: SupportRepId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Customer' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Customer = Source{[Schema="public",Item="Customer"]}[Data]
+				in
+				    public_Customer
+
+	annotation PBI_ResultType = Table
+

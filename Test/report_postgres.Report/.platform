@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "report_postgres"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "84c5de1c-483a-433b-9bf0-4acf5b86c5bd"
+  }
+}

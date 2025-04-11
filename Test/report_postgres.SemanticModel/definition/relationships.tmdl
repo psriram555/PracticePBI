@@ -1,0 +1,60 @@
+relationship 1dddcaea-7694-4a5e-9f63-cde79c55418d
+	fromColumn: 'public Album'.ArtistId
+	toColumn: 'public Artist'.ArtistId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 9b0163a2-db58-47f4-9748-88e6dcd35df6
+	fromColumn: 'public Track'.AlbumId
+	toColumn: 'public Album'.AlbumId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 969d3388-9f8d-4e64-b236-0d41017c1ae2
+	fromColumn: 'public Track'.GenreId
+	toColumn: 'public Genre'.GenreId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 359d72c5-feb4-43de-9fe2-ce359648ee8b
+	fromColumn: 'public Track'.MediaTypeId
+	toColumn: 'public MediaType'.MediaTypeId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5a0365e6-9c42-4c5b-b1cd-9ee7d63bc81a
+	fromColumn: 'public PlaylistTrack'.TrackId
+	toColumn: 'public Track'.TrackId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 46eb5cb0-76d4-421b-816f-efd20d3bfaa6
+	fromColumn: 'public PlaylistTrack'.PlaylistId
+	toColumn: 'public Playlist'.PlaylistId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3e194e98-100e-4219-b6de-63b2264a0c6f
+	fromColumn: 'public Invoice'.CustomerId
+	toColumn: 'public Customer'.CustomerId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 12e700f6-d985-462c-87f7-207561da1f42
+	fromColumn: 'public InvoiceLine'.TrackId
+	toColumn: 'public Track'.TrackId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5d0fe5a6-487b-4f03-b0c2-b1fdfab5668a
+	fromColumn: 'public InvoiceLine'.InvoiceId
+	toColumn: 'public Invoice'.InvoiceId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3676ffe2-a814-4ee5-a041-b7da35b4e0c4
+	fromColumn: 'public Customer'.SupportRepId
+	toColumn: 'public Employee'.EmployeeId
+
+	annotation PBI_IsFromSource = FS
+

@@ -1,0 +1,36 @@
+table 'public Playlist'
+	lineageTag: 907b39a8-4ac2-4de3-8ce8-1430c4adf2bd
+
+	column PlaylistId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1673b298-8d4d-4772-92f2-61b7fc80701b
+		summarizeBy: none
+		sourceColumn: PlaylistId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 40ec329c-8ebf-46f7-b1db-363dde41a49b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Playlist' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Playlist = Source{[Schema="public",Item="Playlist"]}[Data]
+				in
+				    public_Playlist
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

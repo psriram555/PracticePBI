@@ -1,0 +1,106 @@
+table 'public Invoice'
+	lineageTag: c5baa870-c25a-4eeb-b7e0-f32787089056
+
+	column InvoiceId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 60376b26-329f-4e40-b992-f2acf614d226
+		summarizeBy: none
+		sourceColumn: InvoiceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 83c13de9-0f93-4f48-a69b-c173920d4026
+		summarizeBy: none
+		sourceColumn: CustomerId
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceDate
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: a21889df-4aa5-4bde-bd02-effc6557d455
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillingAddress
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 23090b9e-a07f-43df-aceb-1333eda49cc6
+		summarizeBy: none
+		sourceColumn: BillingAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillingCity
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: c36a1b2c-5b81-48e8-ba09-f6512f139a8a
+		summarizeBy: none
+		sourceColumn: BillingCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillingState
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: ed95846a-1c12-42dc-a41a-253062c6d141
+		summarizeBy: none
+		sourceColumn: BillingState
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillingCountry
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 2a299155-cbf0-49b2-b46d-db169d6b483f
+		summarizeBy: none
+		sourceColumn: BillingCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column BillingPostalCode
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: e8abb375-794a-4f73-9ac1-d75058322100
+		summarizeBy: none
+		sourceColumn: BillingPostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal
+		lineageTag: 754d2d2d-f997-48f8-b359-742e343fefde
+		summarizeBy: sum
+		sourceColumn: Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public Invoice' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Invoice = Source{[Schema="public",Item="Invoice"]}[Data]
+				in
+				    public_Invoice
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

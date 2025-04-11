@@ -1,0 +1,36 @@
+table 'public Artist'
+	lineageTag: 3811a3a6-2dfd-49d9-a810-550f80b1c559
+
+	column ArtistId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 606dad35-0bc5-47d0-9c24-32e7ae7d8a26
+		summarizeBy: none
+		sourceColumn: ArtistId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4b22ddd4-4af8-450d-96f8-29196d4799ad
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Artist' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Artist = Source{[Schema="public",Item="Artist"]}[Data]
+				in
+				    public_Artist
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

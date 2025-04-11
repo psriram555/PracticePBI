@@ -1,0 +1,110 @@
+table 'public Track'
+	lineageTag: 1d72c49b-3825-4edc-aa7e-fff61bb33537
+
+	column TrackId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4f041ca7-4665-4e90-9eed-02b8fd5bb32b
+		summarizeBy: none
+		sourceColumn: TrackId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9860db6d-8569-4b85-a01f-2871cbd0bbe3
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumId
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8929bc52-411e-4725-92b0-5d6e7db9ee74
+		summarizeBy: none
+		sourceColumn: AlbumId
+
+		annotation SummarizationSetBy = Automatic
+
+	column MediaTypeId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 053714de-a4b5-49b2-9ffe-195c393a2c0a
+		summarizeBy: none
+		sourceColumn: MediaTypeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenreId
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a317335b-6f14-4785-af7b-7603b7fe9a14
+		summarizeBy: none
+		sourceColumn: GenreId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Composer
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 5223ec67-884c-4e21-af96-1116fb9bc022
+		summarizeBy: none
+		sourceColumn: Composer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Milliseconds
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 82345e70-1843-466f-9559-125feb8d5456
+		summarizeBy: sum
+		sourceColumn: Milliseconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bytes
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6fad44a2-7440-49e2-a962-8810f0fed8cd
+		summarizeBy: sum
+		sourceColumn: Bytes
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal
+		lineageTag: bfeccb69-34be-418a-b3dd-0b55f38d69e9
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public Track' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Track = Source{[Schema="public",Item="Track"]}[Data]
+				in
+				    public_Track
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
