@@ -1,0 +1,41 @@
+table 'Measure Table'
+	lineageTag: a5edcb4c-5b30-4700-9740-bc4819f4674a
+
+	measure Sales = ```
+			SUM(Sales[Sales Amount]) 
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 21ad50a9-f278-4dc1-af04-d7fe0173bd42
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'PY Sales_SamePeriodLastYear' = ```
+			CALCULATE([Sales], SAMEPERIODLASTYEAR(Dim_Date[Date])) 
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: CY & PY
+		lineageTag: 4486a7fe-9fba-4296-8f46-b34aa53fb8af
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'PY Sales_PreviousYear' = ```
+			CALCULATE(SUM(Sales[Sales Amount]), PREVIOUSYEAR(Dim_Date[Date])) 
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: CY & PY
+		lineageTag: 3c2a74a7-3640-41bb-b8d7-370c7ad984fd
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Measure Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
