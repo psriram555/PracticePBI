@@ -1,0 +1,18 @@
+relationship 16b35aae-fcdc-408c-84a1-a7e5c91f1473
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.'Order Date'
+	toColumn: LocalDateTable_966ea91a-e96c-4182-9919-35c56ba72c21.Date
+
+relationship f50d7630-2d9a-41fa-a4d8-608241957dc0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.'Ship Date'
+	toColumn: LocalDateTable_3bd57860-1306-4c53-b871-c55d5d1fdaa2.Date
+
+relationship AutoDetected_99e68e0c-0d14-4c79-8ffe-626b2774cb94
+	fromColumn: Orders.Region
+	toColumn: Users.Region
+
+relationship ee6b6f2b-3ccc-6999-c972-30802e7aa2d0
+	fromColumn: Orders.'Order ID'
+	toColumn: Returns.'Order ID'
+

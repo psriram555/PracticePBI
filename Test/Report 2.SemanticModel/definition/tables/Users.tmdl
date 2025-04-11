@@ -1,0 +1,35 @@
+table Users
+	lineageTag: 5ee92215-7ed7-4d3b-93ee-74d62f292744
+
+	column Region
+		dataType: string
+		lineageTag: 32829bba-647a-41b2-9b7a-d448feaa7d7a
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manager
+		dataType: string
+		lineageTag: a45e7456-ed05-4722-8ca6-1a34e3adeea5
+		summarizeBy: none
+		sourceColumn: Manager
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Users = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\sriram.pippalla\Documents\PracticeGit\PracticePBI\SuperStoreUS-2015.xlsx"), null, true),
+				    Users_Sheet = Source{[Item="Users",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Users_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Region", type text}, {"Manager", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
