@@ -1,0 +1,72 @@
+table 'public InvoiceLine'
+	lineageTag: f2ab042a-e334-4531-a8c1-fcab88a312c3
+
+	column InvoiceLineId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 40ea2b93-40be-453c-98b5-3e30af8eba79
+		summarizeBy: count
+		sourceColumn: InvoiceLineId
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3a118bde-7aac-41aa-b97a-6efb43803cb1
+		summarizeBy: none
+		sourceColumn: InvoiceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f6673e8c-4856-4e3c-bc24-d3597a85d671
+		summarizeBy: none
+		sourceColumn: TrackId
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal
+		lineageTag: 55696054-40ad-4e14-95ea-a3cd5f3456f8
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 901e4476-a736-458e-8b3a-7c65ac74542b
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public InvoiceLine' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_InvoiceLine = Source{[Schema="public",Item="InvoiceLine"]}[Data]
+				in
+				    public_InvoiceLine
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

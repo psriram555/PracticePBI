@@ -1,0 +1,48 @@
+table 'public Album'
+	lineageTag: 509651bd-936b-4d0d-bb42-4892ed7778fe
+
+	column AlbumId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fd350e9e-1f0f-493c-8067-8387de0c5bcc
+		summarizeBy: none
+		sourceColumn: AlbumId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3f9ae73d-0f06-4e06-9c03-111b4918c2b7
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9c573ed9-833c-45f6-800b-df0511e73f40
+		summarizeBy: none
+		sourceColumn: ArtistId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Album' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Album = Source{[Schema="public",Item="Album"]}[Data]
+				in
+				    public_Album
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

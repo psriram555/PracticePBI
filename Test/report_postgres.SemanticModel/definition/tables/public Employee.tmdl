@@ -1,0 +1,158 @@
+table 'public Employee'
+	lineageTag: 5ddd1aa1-d255-44f0-8bac-e0b8a07956e7
+
+	column EmployeeId
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1b907b18-0652-4b48-bce7-d4673bc70302
+		summarizeBy: none
+		sourceColumn: EmployeeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 17e76114-43cd-4fc4-bc7b-59355437b272
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(max)
+		lineageTag: 1b65c77d-2f00-4384-bec2-713dfc6b86f0
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9cbed914-b024-4909-9eec-a830eb535b73
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReportsTo
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8a93e16e-8080-4ead-a3d4-8956a91cc9a4
+		summarizeBy: none
+		sourceColumn: ReportsTo
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 951bad05-ca37-4f17-840f-be402fbafd61
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column HireDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ae151b82-83ea-4634-95b8-bc14fdbff719
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: d4e47f7e-5b6e-4fb5-bc91-57c17f98b584
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3cb339be-366c-475f-b78c-5fe041c6d991
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 543016a9-eb52-4d20-89b9-ecb5606c532f
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: cbe52ebf-f726-4a9d-9153-90a9f4dce664
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 74a3fbca-825b-434d-9c0b-8e46fabec266
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 3c47440c-ae10-437a-913e-5baf504505fd
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: cf1e44b2-bb43-41b6-a6ff-5fbc6b5fc4f6
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 0508a9ce-2e7b-4d32-a2f6-dfc7677c0bb9
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public Employee' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
+				    public_Employee = Source{[Schema="public",Item="Employee"]}[Data]
+				in
+				    public_Employee
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

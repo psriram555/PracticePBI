@@ -1,0 +1,30 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["public Album","public Artist","public Track","public Genre","public PlaylistTrack","public Playlist","public MediaType","public Invoice","public InvoiceLine","public Customer","public Employee"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1451.0 (25.03)+5007b75f0f7edbed506e31fcb76584cd6d711788
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'public Album'
+ref table 'public Artist'
+ref table 'public Track'
+ref table 'public Genre'
+ref table 'public PlaylistTrack'
+ref table 'public Playlist'
+ref table 'public MediaType'
+ref table 'public Invoice'
+ref table 'public InvoiceLine'
+ref table 'public Customer'
+ref table 'public Employee'
+
+ref cultureInfo en-US
+
