@@ -1,0 +1,51 @@
+{
+  "config": "{\"version\":\"5.37\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY19SU12\",\"version\":\"5.10\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY19SU12",
+            "path": "BaseThemes/CY19SU12.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "37dab9b423cc82b043fe",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"694f686b3599f3b12ce0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":769.1334598355471,\"y\":139.25363693864642,\"z\":1,\"width\":299.5572422517394,\"height\":280.12650221378874,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Sales Territory.Group\",\"active\":true}],\"Y\":[{\"queryRef\":\"Measure Table.Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Sales Territory\",\"Type\":0},{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Group\"},\"Name\":\"Sales Territory.Group\",\"NativeReferenceName\":\"Group\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Sales\"},\"Name\":\"Measure Table.Sales\",\"NativeReferenceName\":\"Sales\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Sales\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 280.13,
+          "width": 299.56,
+          "x": 769.13,
+          "y": 139.25,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"8d2767d24e01548c9738\",\"layouts\":[{\"id\":0,\"position\":{\"x\":170.01897533206832,\"y\":118.20366856419987,\"z\":0,\"width\":374.0417457305503,\"height\":322.22643896268187,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Sales Territory.Country\",\"active\":true}],\"Y\":[{\"queryRef\":\"Measure Table.Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Sales Territory\",\"Type\":0},{\"Name\":\"m\",\"Entity\":\"Measure Table\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Country\"},\"Name\":\"Sales Territory.Country\",\"NativeReferenceName\":\"Country\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Sales\"},\"Name\":\"Measure Table.Sales\",\"NativeReferenceName\":\"Sales\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Sales\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 322.23,
+          "width": 374.04,
+          "x": 170.02,
+          "y": 118.20,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

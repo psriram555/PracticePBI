@@ -1,0 +1,50 @@
+table Prod_table_with_Others
+	lineageTag: 3a8e101d-bc5c-4e13-99f6-27c90e01a79d
+
+	column 'Product Name'
+		lineageTag: 9432210d-bc49-4470-8054-ab7f1b43d22c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Product Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Group'
+		lineageTag: 6b186af3-b77d-4faa-a7db-9f573941a275
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Product Group]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Prod_table_with_Others = calculated
+		mode: import
+		source =
+				
+				var res1 =  UNION( SELECTCOLUMNS('Product',
+				                                 "Product Name", 'Product'[Product],
+				                                 "Product Group", "Best Products"
+				                                ),
+				                                {("Others", "Others")}
+				)
+				// with res1 -- we ar getting duplicate rows.. hence not ideal.
+				
+				
+				var res2 =  UNION( VALUES('Product'[Product]),
+				                   {("Others")}
+				)
+				// with res2 we get expected results.. just that we get ONE row of data with all distinct prod Names + Others ( which we added )
+				
+				
+				var res3 =  UNION( SELECTCOLUMNS(ALLNOBLANKROW ('Product'[Product]),
+				                                  "Product Name", 'Product'[Product] ,
+				                                  "Product Group", "Best Products"
+				                    ),
+				                   {("Others", "Other Products")}
+				)
+				// issue in res1 is being resolved with res3.. no duplicates will be there here..
+				
+				return res3
+
+	annotation PBI_Id = 7b1c5947c72e4e30be1425ff2feff986
+
