@@ -1,0 +1,144 @@
+table ShipDate
+	lineageTag: cfe08538-cfc6-46da-af7e-22321179d922
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: f5073294-9324-4231-88a7-9dbbf885483e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR(ShipDate[Date])
+		formatString: 0
+		lineageTag: 3494d850-4874-4102-9cb6-e5be427cb014
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Month = ```
+			MONTH(ShipDate[Date]) 
+			```
+		formatString: 0
+		lineageTag: 8f7248c2-93f9-4986-9f29-6c493abaad4c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Year-Month = ```
+			YEAR(ShipDate[Date]) & "-" & MONTH(ShipDate[Date]) 
+			```
+		lineageTag: e205b640-c41e-446b-9a46-61f22f59f3ea
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDateKey = ```
+			( YEAR(ShipDate[Date])*100 + MONTH(ShipDate[Date]) )*100 + DAY(ShipDate[Date]) 
+			```
+		formatString: 0
+		lineageTag: d07bb269-8c81-4e6c-aa2a-0943ab2ef389
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter = ```
+			" Q" & QUARTER(ShipDate[Date]) 
+			```
+		lineageTag: 054976a6-237c-4667-9151-3106dadb5434
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name' = FORMAT(ShipDate[Date], "MMM")
+		lineageTag: 04d12ed2-2ef0-49a6-beaa-3d50931db07c
+		summarizeBy: none
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipMonthKey = ```
+			YEAR(ShipDate[Date])*100 + MONTH(ShipDate[Date]) 
+			```
+		formatString: 0
+		lineageTag: c6645fa1-2db1-4e17-9347-41de06313c21
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year' = "FY" & YEAR(ShipDate[Date]) + IF(MONTH(ShipDate[Date]) > 6, 1 )
+		lineageTag: 3a1c296b-0790-4c23-8bcc-60a3f147e959
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter' = ```
+			
+			                ShipDate[Fiscal Year] & "Q" &
+			                IF(MONTH(ShipDate[Date]) > 6 && MONTH(ShipDate[Date]) <= 9, 1 ,
+			                        IF(MONTH(ShipDate[Date]) >9 && MONTH(ShipDate[Date]) <= 12 , 2 ,
+			                                IF(MONTH(ShipDate[Date]) >=1 && MONTH(ShipDate[Date]) <= 3 , 3, 4 )
+			                        )
+			                )
+			```
+		lineageTag: 17107d03-ed8c-4344-9c57-c62d8debcf69
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month' = ```
+			
+			                "FY" & 
+			                ( 
+			                    ( YEAR(ShipDate[Date]) + IF(MONTH(ShipDate[Date]) >6, 1) )* 100 +  
+			                        IF(MONTH(ShipDate[Date]) > 6, MONTH(ShipDate[Date]) - 6, MONTH(ShipDate[Date]) + 6)
+			                )
+			```
+		lineageTag: cd8e25b6-a61f-4b60-9506-e20c35621345
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'ShipDate Hierarchy'
+		lineageTag: eba8254a-11b8-4058-b67c-8e28a380bc33
+
+		level Year
+			lineageTag: ca3072b8-11d3-4184-9889-177c55a858d9
+			column: Year
+
+		level Quarter
+			lineageTag: 2bf67f4d-5ec1-4863-9421-d878f6396deb
+			column: Quarter
+
+		level 'Month Name'
+			lineageTag: f37a726e-b5ad-4018-b904-913593204c25
+			column: 'Month Name'
+
+		level Date
+			lineageTag: 92292eaa-d7b2-4b15-9139-051a39b57b3a
+			column: Date
+
+	hierarchy 'Fiscal Year Hierarchy'
+		lineageTag: b672d67b-5f1e-48ca-b430-053a35dc18bf
+
+		level 'Fiscal Year'
+			lineageTag: e69c52ed-00ee-45b0-95ad-566845873c5a
+			column: 'Fiscal Year'
+
+		level 'Fiscal Quarter'
+			lineageTag: d5ec7455-4e18-4337-8ddd-4b4281660b4c
+			column: 'Fiscal Quarter'
+
+		level 'Fiscal Month'
+			lineageTag: 8ae11988-94b8-419b-be41-02391be21e72
+			column: 'Fiscal Month'
+
+	partition ShipDate = calculated
+		mode: import
+		source = CALENDAR(MIN('Dim_Date'[Date]), MAX('Dim_Date'[Date]))
+
+	annotation PBI_Id = d1f494ae40f04cfa9bd6ff5c19863a17
+
