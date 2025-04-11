@@ -32,6 +32,11 @@ table 'public Invoice'
 		summarizeBy: none
 		sourceColumn: InvoiceDate
 
+		variation Variation
+			isDefault
+			relationship: 2b69da4d-052e-4278-98c9-d61a2eff627d
+			defaultHierarchy: LocalDateTable_4e4c1f72-992e-4269-b102-5856bf261dd1.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	column BillingAddress
@@ -92,7 +97,7 @@ table 'public Invoice'
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition 'public Invoice' = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),

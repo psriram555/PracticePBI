@@ -22,7 +22,7 @@ table 'public MediaType'
 		annotation SummarizationSetBy = Automatic
 
 	partition 'public MediaType' = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),

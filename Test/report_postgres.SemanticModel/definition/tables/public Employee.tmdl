@@ -46,7 +46,7 @@ table 'public Employee'
 		formatString: 0
 		sourceProviderType: int
 		lineageTag: 8a93e16e-8080-4ead-a3d4-8956a91cc9a4
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: ReportsTo
 
 		annotation SummarizationSetBy = Automatic
@@ -59,6 +59,11 @@ table 'public Employee'
 		summarizeBy: none
 		sourceColumn: BirthDate
 
+		variation Variation
+			isDefault
+			relationship: cef664ab-c32a-4739-9956-e85466140289
+			defaultHierarchy: LocalDateTable_92a074d6-310f-4fbf-980b-21eac8cd3786.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	column HireDate
@@ -68,6 +73,11 @@ table 'public Employee'
 		lineageTag: ae151b82-83ea-4634-95b8-bc14fdbff719
 		summarizeBy: none
 		sourceColumn: HireDate
+
+		variation Variation
+			isDefault
+			relationship: 8f14d696-bd60-4e33-9a15-cd299b46da82
+			defaultHierarchy: LocalDateTable_37eefa4a-9ff8-4b1a-b0f1-2efb5b329374.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -144,7 +154,7 @@ table 'public Employee'
 		annotation SummarizationSetBy = Automatic
 
 	partition 'public Employee' = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),
