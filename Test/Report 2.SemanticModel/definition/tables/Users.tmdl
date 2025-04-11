@@ -21,7 +21,7 @@ table Users
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\sriram.pippalla\Documents\PracticeGit\PracticePBI\SuperStoreUS-2015.xlsx"), null, true),
+				    Source = Excel.Workbook(Web.Contents("https://impetusinfotech-my.sharepoint.com/personal/sriram_pippalla_impetus_com/Documents/SuperStoreUS-2015.xlsx"), null, true),
 				    Users_Sheet = Source{[Item="Users",Kind="Sheet"]}[Data],
 				    #"Changed Type" = Table.TransformColumnTypes(Users_Sheet,{{"Column1", type text}, {"Column2", type text}}),
 				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
