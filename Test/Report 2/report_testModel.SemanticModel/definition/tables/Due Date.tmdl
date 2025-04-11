@@ -1,0 +1,139 @@
+table 'Due Date'
+	lineageTag: 1c1ed95a-0814-44a9-b513-2258149fef1b
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: bf4dabc4-94f8-4ef0-8f71-4c4645bcbec7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = ```
+			YEAR('Due Date'[Date]) 
+			```
+		formatString: 0
+		lineageTag: dd6f8afe-cf20-4ea7-af05-b2e54bcb52b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Month = ```
+			MONTH('Due Date'[Date]) 
+			```
+		formatString: 0
+		lineageTag: 37714f61-24ec-4f10-afa3-d36d53f1102d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column MonthName = ```
+			FORMAT( 'Due Date'[Date], "mmm") 
+			```
+		lineageTag: 0df6e6e8-b7c1-4495-a98a-fff9d64b8b2f
+		summarizeBy: none
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter = "Q" & QUARTER('Due Date'[Date])
+		lineageTag: f4e081fe-982d-460a-be18-1ff131d9e415
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDateKey = ( YEAR('Due Date'[Date]) *100 + MONTH('Due Date'[Date]) ) * 100 + DAY('Due Date'[Date])
+		formatString: 0
+		lineageTag: b9c808a3-46a0-46d6-b9c3-37de7b7f4c1e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthKey = ```
+			YEAR('Due Date'[Date]) *100 + MONTH('Due Date'[Date]) 
+			```
+		formatString: 0
+		lineageTag: 219d9b43-dad4-4463-9802-7df01663a165
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year' = ```
+			"FY" & YEAR('Due Date'[Date]) + IF(MONTH('Due Date'[Date]) > 6, 1 )
+			 // "FY" & IF(Month('Due Date'[Date]) > 6, YEAR('Due Date'[Date])+1 , YEAR('Due Date'[Date])  ) 
+			```
+		lineageTag: 10f039ee-0b64-4051-b6c9-02ef46f650f1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FIscal Quarter' = ```
+			
+			                'Due Date'[Fiscal Year] & "Q" &
+			                
+			                IF(MONTH('Due Date'[Date]) > 6 && MONTH('Due Date'[Date]) <=9, 1 , 
+			                                IF(MONTH('Due Date'[Date]) > 9 && MONTH('Due Date'[Date]) <= 12, 2 ,
+			                                        IF(MONTH('Due Date'[Date]) >=1  && MONTH('Due Date'[Date]) <=3, 3 , 4 )
+			                                )
+			                ) 
+			```
+		lineageTag: c82a6d25-9fe9-40bf-9816-0d376c9dab67
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month' = ```
+			
+			                "FY" & 
+			                (( YEAR('Due Date'[Date]) + IF(MONTH('Due Date'[Date]) > 6, 1) )*100 + 
+			                    IF(MONTH('Due Date'[Date]) > 6, MONTH('Due Date'[Date]) - 6 , MONTH('Due Date'[Date]) + 6 ) 
+			                )
+			```
+		lineageTag: 9a5ab6d3-f2b3-4043-b658-fdd7d1b8bce1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Year Hierarchy'
+		lineageTag: d60a9596-06fb-4671-aca2-afbc41e56699
+
+		level Year
+			lineageTag: 0effbc55-bf87-481e-ad07-221bc66a305d
+			column: Year
+
+		level Quarter
+			lineageTag: 84e0b27b-904c-4d29-a5a1-3c94c7fa6014
+			column: Quarter
+
+		level Month
+			lineageTag: 0319a18e-42c7-416f-ab72-a4d4349a52d1
+			column: Month
+
+		level Date
+			lineageTag: d843535d-0f0d-4695-adf5-5cbaf29eb6d8
+			column: Date
+
+	hierarchy 'Fiscal Year Hierarchy'
+		lineageTag: a8681957-e836-4be0-b00a-52fcb1f872fb
+
+		level 'Fiscal Year'
+			lineageTag: 9a00846e-f4b3-4b56-8705-522909948312
+			column: 'Fiscal Year'
+
+		level 'FIscal Quarter'
+			lineageTag: 2ea6b96f-b1c0-498c-a086-3a7317ed5fdc
+			column: 'FIscal Quarter'
+
+		level 'Fiscal Month'
+			lineageTag: ac68738e-26ac-4786-bdde-81752bfbf83e
+			column: 'Fiscal Month'
+
+	partition 'Due Date' = calculated
+		mode: import
+		source = CALENDARAUTO(6)
+
+	annotation PBI_Id = 4448eefec4834fdead835571a5415ccc
+

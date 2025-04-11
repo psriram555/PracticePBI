@@ -1,0 +1,26 @@
+table Top_N_Parameter
+	lineageTag: 5d87c68a-83f4-4aa6-aaa5-44a2b430aea5
+
+	measure 'Top_N_Parameter Value' = SELECTEDVALUE('Top_N_Parameter'[Top_N_Parameter], 10)
+		formatString: 0
+		lineageTag: 082d93e1-b44d-4e63-b2b2-168c7d1936e4
+
+	column Top_N_Parameter
+		formatString: 0
+		lineageTag: 0c31aafb-3e81-4df0-8582-2a69b0e18773
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Top_N_Parameter = calculated
+		mode: import
+		source = GENERATESERIES(0, 20, 2)
+
+	annotation PBI_Id = 6cd614b5eace494eb7d508d5d56593bf
+
