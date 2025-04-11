@@ -96,7 +96,7 @@ table 'public Track'
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition 'public Track' = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = PostgreSQL.Database("ec2-65-0-27-115.ap-south-1.compute.amazonaws.com:5939", "chinook"),

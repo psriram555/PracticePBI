@@ -25,6 +25,10 @@ ref table 'public Invoice'
 ref table 'public InvoiceLine'
 ref table 'public Customer'
 ref table 'public Employee'
+ref table DateTableTemplate_e3389fed-467a-48af-b297-a7e01b6f7f62
+ref table LocalDateTable_4e4c1f72-992e-4269-b102-5856bf261dd1
+ref table LocalDateTable_92a074d6-310f-4fbf-980b-21eac8cd3786
+ref table LocalDateTable_37eefa4a-9ff8-4b1a-b0f1-2efb5b329374
 
 ref cultureInfo en-US
 
