@@ -23,7 +23,7 @@ expression Catalog_param = "catalog_dev" meta [IsParameterQuery=true, Type="Text
 	annotation PBI_ResultType = Text
 
 /// Provide Schema or Database
-expression Schema_param = "nyctaxi_dev" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+expression Schema_param = "nyctaxi_dev" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
 	lineageTag: cd62799b-2b0d-43f3-971c-f19b1e91f178
 
 	annotation PBI_NavigationStepName = Navigation
