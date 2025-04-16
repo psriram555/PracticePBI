@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.62\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "da63a8c84e75efb6096d",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6a3e48d26754a48117d0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":374.17610556183536,\"y\":173.85960460448916,\"z\":0,\"width\":612.2881727375487,\"height\":425.2001199566311,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(sales_transactions.totalPrice)\"}],\"Category\":[{\"queryRef\":\"sales_suppliers.continent\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"sales_transactions\",\"Type\":0},{\"Name\":\"s1\",\"Entity\":\"sales_suppliers\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"totalPrice\"}},\"Function\":0},\"Name\":\"Sum(sales_transactions.totalPrice)\",\"NativeReferenceName\":\"Sum of totalPrice\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s1\"}},\"Property\":\"continent\"},\"Name\":\"sales_suppliers.continent\",\"NativeReferenceName\":\"continent\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"totalPrice\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 425.20,
+          "width": 612.29,
+          "x": 374.18,
+          "y": 173.86,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
